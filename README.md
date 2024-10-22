@@ -1,6 +1,6 @@
-# Flask middleware with Unkey RBAC
+# FoalTS middleware with Unkey RBAC
 
-This simple Flask application demonstrates how to implement API key verification using the Unkey service. The application has both public and protected routes, with the protected route requiring a valid API key.
+This simple FoalTS application demonstrates how to implement API key verification using the Unkey service. The application has both public and protected routes, with the protected route requiring a valid API key.
 
 ## Features
 
@@ -18,15 +18,13 @@ This simple Flask application demonstrates how to implement API key verification
 6. Click on the **"Keys"** tab.
 7. Select the key you created.
 8. Click on the **"Permissions"** tab.
-9. Check the role's checkbox to assign the role and permission to the key.
-10. Create a new root key from the [settings/root-key](https://app.unkey.com/settings/root-keys/)
+9. Optionally you can also follow this link to create permissions [here](https://app.unkey.com/settings/root-keys/new?permissions=api.*.create_api,api.*.read_api,api.*.update_api,api.*.delete_api,api.*.create_key,api.*.read_key,api.*.update_key,api.*.delete_key,api.*.encrypt_key,api.*.decrypt_key,rbac.*.create_role,rbac.*.read_role,rbac.*.delete_role,rbac.*.create_permission,rbac.*.read_permission,rbac.*.delete_permission,rbac.*.add_permission_to_key,rbac.*.remove_permission_from_key,rbac.*.add_role_to_key,rbac.*.remove_role_from_key)
+10. Check the role's checkbox to assign the role and permission to the key.
+11. Create a new root key from the [settings/root-key](https://app.unkey.com/settings/root-keys/)
 
 
 ## Prerequisites
 
-- Python 3.x
-- Flask
-- Requests library
 - An account with Unkey and your API ID and Root Key
 
 ## Installation
@@ -34,17 +32,8 @@ This simple Flask application demonstrates how to implement API key verification
 1. Clone this repository:
    
    ```
-   git clone https://github.com/harshsbhat/unkey-flask.git
-   cd unkey-flask
-
-
-3. Set up a virtual environment (optional but recommended): :
-   ```
-   python3 -m venv venv   # For Linux/macOS
-   source venv/bin/activate  # For Linux/macOS
-
-   python -m venv venv   # For Windows
-   venv\Scripts\activate  # For Windows
+   git clone https://github.com/harshsbhat/unkey-foal.git
+   cd unkey-foal
 
 4. Set up your environment variables: Create a .env file in the project root and add the following variables.
 Get the Unkey API ID and Unkey rootkey from [unkey dashboard](http://app.unkey.com/)
@@ -59,29 +48,27 @@ Get the Unkey API ID and Unkey rootkey from [unkey dashboard](http://app.unkey.c
 
 
    ```
-   pip install -r requirements.txt
+   npm install
    ```
 ## Usage
 
 1. Run the project:
    
    ```
-   python3 src/main.py  # For MacOS/Linux
-
-   python src/main.py # For windows
+   npm start
    ```
 
-- **Public Route:** Visit `http://localhost:3000/public` to access the public route.
-- **Protected Route:** Use a tool like Postman or curl to send a GET request to `http://localhost:3000/protected` with an `Authorization` header containing your API key.
+- **Public Route:** Visit `http://localhost:3001/api/public` to access the public route.
+- **Protected Route:** Use a tool like Postman or curl to send a GET request to `http://localhost:3001/api/protected` with an `Authorization` header containing your API key.
 
-### Example protected request using curl:
+### Example public request using curl:
 
 ```bash
-curl http://127.0.0.1:3000/public
+curl http://localhost:3001/api/public
 ```
 
 ### Example protected request using curl ( MAKE SURE THE API KEY has the withAuth permission ):
 
 ```bash
-curl -H "Authorization: Bearer <api_key>" http://localhost:3000/protected
+curl -H "Authorization: Bearer <api_key>" http://localhost:3001/api/protected
 ```
