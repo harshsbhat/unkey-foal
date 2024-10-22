@@ -55,7 +55,7 @@ Get the Unkey API ID and Unkey rootkey from [unkey dashboard](http://app.unkey.c
 1. Run the project:
    
    ```
-   npm start
+   npm run dev
    ```
 
 - **Public Route:** Visit `http://localhost:3001/api/public` to access the public route.
